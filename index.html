@@ -1,0 +1,243 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/21d5bbc48c.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+
+    <header>
+        <ul class="conteiner-menu-principal">
+            <li class="item1">
+                <a href="#">Home</a>
+            </li>
+            <li class="item1">
+                <a href="#">Band</a>
+            </li>
+            <li class="item1">
+                <a href="#">Tour</a>
+            </li>
+            <li class="item1">
+                <a href="#">Contact</a>
+            </li>
+            <li class="item1">
+                <a class="more" id="merch" href="#">More<i class="fas fa-caret-down"></i></a>
+                <ul class="conteiner-second-menu">
+                    <li> <a href="#">Merchandise</a> </li>
+                    <li> <a href="#">Extras</a> </li>
+                    <li> <a href="#">Media</a> </li>
+                </ul>
+            </li>
+        </ul>
+        <a id="icon" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+        <button id="btn-menu"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <main>
+        <section class="conteiner-imagens">
+            <div class="imagens select">
+                <img src="imagens/la.jpg" alt="">
+                <p class="p1">Los angeles</p>
+                <p class="p2"><strong> We had the best time playing at Venice Beach!</strong></p>
+            </div>
+            <div class="imagens">
+                <img src="imagens/ny.jpg" alt="">
+                <p class="p1">New York</p>
+                <p class="p2"><strong>The atmosphere in New York is lorem ipsum.</strong> </p>
+            </div>
+            <div class="imagens">
+                <img src="imagens/chicago.jpg" alt="">
+                <p class="p1">Chicago </p>
+                <p class="p2"><strong>Thank you, Chicago - A night we won't forget.</strong> </p>
+            </div>
+        </section>
+        <section class="conteiner-theband">
+            <h1>The band</h1>
+            <p> <i> We love music</i></p>
+            <p class="pra">
+                We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <div class="theband-flex">
+                <div>
+                    <p>Name</p>
+                    <img src="imagens/bandmember.jpg" alt="">
+                </div>
+                <div>
+                    <p>Name</p>
+                    <img src="imagens/bandmember.jpg" alt="">
+                </div>
+                <div>
+                    <p>Name</p>
+                    <img src="imagens/bandmember.jpg" alt="">
+                </div>
+            </div>
+
+        </section>
+        <section class="tourdates">
+            <div class="conteinertd">
+                <h2>Tour dates</h2>
+                <p><i> Remember to book your tickets!</i></p>
+                <ul class="flex-meses">
+                    <li> September
+                        <span>
+                            Sold out
+                        </span>
+                    </li>
+                    <li>October
+                        <span>
+                            Sold out
+                        </span>
+                    </li>
+                    <li>November</li>
+                </ul>
+            </div>
+
+
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
+<script>
+    (function() {
+
+        js();
+        window.addEventListener('resize', js);
+
+        function js() {
+
+            //evento de verificação de tela
+            //Verificando o tamamho da tela
+            if (window.innerWidth > 600) {
+                //Ativa o sub menu more com visibility = visible 
+                document.querySelector('.conteiner-second-menu').style.visibility = 'visible';
+                //Ativa display block do menu de navegação
+                menuHomeFlexBlock();
+                //ativação do slide de imagens
+                startSlide();
+                //trocar palavre merch por more do menu home
+                document.querySelector('#merch').textContent = 'More';
+                //click para o sub menu 'more' do menu de navegação home
+                let more = document.querySelector(".more");
+                let subMenu = document.querySelector(".conteiner-second-menu")
+
+                more.addEventListener("mouseover", moreon);
+                more.addEventListener("mouseout", moreout)
+                subMenu.addEventListener('mouseover', moreon)
+                subMenu.addEventListener('mouseout', moreout)
+
+                //ativa display do sub menu more
+                function moreon() {
+                    let subMenu = document.querySelector(".conteiner-second-menu")
+                    subMenu.style.display = 'block';
+
+                }
+                //desativar display do sub menu more
+                function moreout() {
+                    let subMenu = document.querySelector(".conteiner-second-menu")
+                    subMenu.style.display = 'none';
+
+                }
+                //Ativa display block do menu de navegação
+                function menuHomeFlexBlock() {
+                    let homeHeader2 = document.querySelectorAll(".conteiner-menu-principal .item1")
+                    for (let g = 0; g < homeHeader2.length; g++) {
+                        console.log(homeHeader2[g].style.display = 'block');
+                    }
+
+                }
+            } else {
+                //para telas pequenas
+                //desativa o sub menu more com visibility = hidden
+                document.querySelector('.conteiner-second-menu').style.visibility = 'hidden'
+                    //Desativa display block do menu de navegação home para ser ativado ao click
+                menuHomeBlockNone();
+                //modificar nome more por mech
+                document.querySelector('#merch').textContent = 'Merch';
+                //click botão para o menu home
+                let btnMenuHeader = document.querySelector('#btn-menu')
+                btnMenuHeader.addEventListener("click", homeon);
+
+                //Ativar menu home ao click
+                function homeon() {
+                    console.log("homeon")
+                    let homeHeader = document.querySelectorAll(".conteiner-menu-principal .item1")
+
+                    if (homeHeader[1].style.display == 'none' || (homeHeader[1].style.display == '')) {
+                        for (let i = 1; i < homeHeader.length; i++) {
+                            homeHeader[i].style.display = 'block'
+                            console.log(homeHeader.length)
+                            console.log('iterações')
+                            console.log(homeHeader[i].style.display);
+                        }
+                    } else {
+                        for (let h = 1; h < homeHeader.length; h++) {
+                            homeHeader[h].style.display = 'none'
+                            console.log(homeHeader[h].style.display);
+
+                        }
+
+                    }
+                }
+                //Desativa display block do menu de navegação home
+                function menuHomeBlockNone() {
+                    let homeHeader2 = document.querySelectorAll(".conteiner-menu-principal .item1")
+                    for (let g = 1; g < homeHeader2.length; g++) {
+                        console.log(homeHeader2[g].style.display = 'none');
+                    }
+
+                }
+
+
+                //click botão para o primeiro menu
+            }
+            //slide de imagens
+            function startSlide() {
+                setInterval(slide, 4000);
+                let i = 0
+
+                function slide() {
+                    let imagensSlide = document.querySelectorAll('.imagens');
+                    //console.log(imagensSlide[i].getAttribute("class"))
+                    //imagensSlide[i].classList.remove('select');
+                    imagensSlide[i].style.display = 'none'
+                        //console.log(imagensSlide[i].getAttribute("class"))
+                    i++;
+                    if (i == imagensSlide.length) {
+                        i = 0;
+                    }
+                    imagensSlide[i].style.display = 'block'
+
+                    // console.log('teste')
+                    //imagensSlide[i].classList.add('select')
+                    // console.log(imagensSlide[i].getAttribute("class"))
+                }
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+
+        //variáveis locais
+        //funções locais
+        //não poluem o escopo global
+    })();
+    //Pegando altura da tela
+</script>
